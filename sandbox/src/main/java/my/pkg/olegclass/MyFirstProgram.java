@@ -10,8 +10,8 @@ public class MyFirstProgram {
         System.out.println("Hello, world");
         Point p1 = new Point(34, 67);
         Point p2 = new Point(38, 69);
-        double dist = distance(p1, p2);
-        System.out.println("Расстояние между точками  =  " + dist);
+        double dist1 = p1.distance(p2);
+        System.out.println("Расстояние = "+ dist1);
 
     }
 
