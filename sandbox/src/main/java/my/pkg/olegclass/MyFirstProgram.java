@@ -8,8 +8,8 @@ public class MyFirstProgram {
     }
     public static void main(String[] args) {
         System.out.println("Hello, world");
-        Point p1 = new Point(34, 67);
-        Point p2 = new Point(38, 69);
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(5, 5);
         double dist1 = p1.distance(p2);
         System.out.println("Расстояние = "+ dist1);
 
