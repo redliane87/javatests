@@ -9,10 +9,10 @@ public class DeleteAdressTest extends TestBase{
 
   @Test
   public void testDeleteAdress() throws Exception {
-    app.selectAdress(By.id("3"));
-    app.acceptNextAlert = true;
-    app.deleteAdress(By.xpath("//input[@value='Delete']"));
-    assertTrue(app.closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+    app.getContactHelper().selectAdress(By.id("9"));
+    app.getAlertHelper().acceptNextAlert = true;
+    app.getContactHelper().deleteAdress(By.xpath("//input[@value='Delete']"));
+    assertTrue(app.getAlertHelper().closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
 
 
