@@ -1,60 +1,53 @@
 package my.pkg.addressbook.appmanager;
 
 import my.pkg.addressbook.model.GroupData;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ContactHelper {
-    private WebDriver wd;
+public class ContactHelper extends HelperBase{
 
     public ContactHelper(WebDriver wd) {
-        this.wd =wd;
+        super(wd);
     }
 
     public void fillAddressForm(GroupData groupData) {
-      wd.findElement(By.name("firstname")).click();
-      wd.findElement(By.name("firstname")).clear();
-      wd.findElement(By.name("firstname")).sendKeys(groupData.getFirstname());
-      wd.findElement(By.name("middlename")).click();
-      wd.findElement(By.name("middlename")).clear();
-      wd.findElement(By.name("middlename")).sendKeys(groupData.getMiddlename());
-      wd.findElement(By.name("lastname")).click();
-      wd.findElement(By.name("lastname")).clear();
-      wd.findElement(By.name("lastname")).sendKeys(groupData.getLastname());
-      wd.findElement(By.name("nickname")).click();
-      wd.findElement(By.name("nickname")).clear();
-      wd.findElement(By.name("nickname")).sendKeys(groupData.getNickname());
-      wd.findElement(By.name("address")).click();
-      wd.findElement(By.name("address")).clear();
-      wd.findElement(By.name("address")).sendKeys(groupData.getAddress());
-      wd.findElement(By.name("email")).clear();
-      wd.findElement(By.name("email")).sendKeys(groupData.getEmail());
-      wd.findElement(By.name("email2")).clear();
-      wd.findElement(By.name("email2")).sendKeys(groupData.getEmail2());
-      wd.findElement(By.name("email3")).clear();
-      wd.findElement(By.name("email3")).sendKeys(groupData.getEmail3());
-      wd.findElement(By.name("bday")).click();
-      new Select(wd.findElement(By.name("bday"))).selectByVisibleText(groupData.getBday());
-      wd.findElement(By.name("bday")).click();
-      wd.findElement(By.name("bmonth")).click();
-      new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(groupData.getBmonth());
-      wd.findElement(By.name("bmonth")).click();
-      wd.findElement(By.name("byear")).click();
-      wd.findElement(By.name("byear")).clear();
-      wd.findElement(By.name("byear")).sendKeys(groupData.getByear());
-      wd.findElement(By.xpath("//input[21]")).click();
+        type(By.name("firstname"), groupData.getFirstname());
+        type(By.name("middlename"), groupData.getMiddlename());
+        type(By.name("lastname"), groupData.getLastname());
+        type(By.name("nickname"), groupData.getNickname());
+        type(By.name("address"), groupData.getAddress());
+        clear(By.name("email"));
+        sendKeys(By.name("email"), groupData.getEmail());
+        clear(By.name("email2"));
+        sendKeys(By.name("email2"), groupData.getEmail2());
+        clear(By.name("email3"));
+        sendKeys(By.name("email3"), groupData.getEmail3());
+        getClick(By.name("bday"));
+        Select("bday").selectByVisibleText(groupData.getBday());
+        getClick(By.name("bday"));
+        getClick(By.name("bmonth"));
+        Select("bmonth").selectByVisibleText(groupData.getBmonth());
+        getClick(By.name("bmonth"));
+        type(By.name("byear"), groupData.getByear());
+        getClick(By.xpath("//input[21]"));
+    }
+
+    @NotNull
+    public Select Select(String bday) {
+        return new Select(wd.findElement(By.name(bday)));
     }
 
     public void initAdressCreation(String s) {
-      wd.findElement(By.linkText(s)).click();
+        getClick(By.linkText(s));
     }
 
     public void deleteAdress(By xpath) {
-      wd.findElement(xpath).click();
+        getClick(xpath);
     }
 
     public void selectAdress(By id) {
-      wd.findElement(id).click();
+        getClick(id);
     }
 }

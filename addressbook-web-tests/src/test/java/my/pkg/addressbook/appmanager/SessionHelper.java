@@ -3,17 +3,19 @@ package my.pkg.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SessionHelper {
-    private final WebDriver wd;
+public class SessionHelper extends HelperBase {
+
 
     public SessionHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
     public void login(String username, String password) {
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.id("LoginForm")).submit();
+        type (By.name("user"),username);
+        type (By.name("pass"),password);
+        supmit(By.id("LoginForm"));
+    }
+
+    public void supmit(By locator) {
+        wd.findElement(locator).submit();
     }
 }

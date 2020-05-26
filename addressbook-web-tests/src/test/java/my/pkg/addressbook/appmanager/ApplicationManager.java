@@ -9,7 +9,7 @@ public class ApplicationManager {
     WebDriver wd;
     private AlertHelper alertHelper;
     private SessionHelper sessionHelper;
-    private  NavigationHelper navigationHelper;
+    private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
 
     public void init() {
@@ -24,7 +24,6 @@ public class ApplicationManager {
     }
 
 
-
     public void stop() {
         navigationHelper.gotoHomePage("home", contactHelper);
         logout("Logout");
@@ -35,22 +34,11 @@ public class ApplicationManager {
         contactHelper.selectAdress(By.linkText(logout));
     }
 
-    public boolean isElementPresent(By by) {
-      try {
-        wd.findElement(by);
-        return true;
-      } catch (NoSuchElementException e) {
-        return false;
-      }
-    }
 
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
-        return navigationHelper;
-    }
 
     public AlertHelper getAlertHelper() {
         return alertHelper;
