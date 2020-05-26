@@ -1,6 +1,6 @@
 package my.pkg.addressbook.model;
 
-public class GroupData {
+public class ContactData {
     private final String firstname;
     private final String middlename;
     private final String lastname;
@@ -13,7 +13,7 @@ public class GroupData {
     private final String bmonth;
     private final String byear;
 
-    public GroupData(String firstname, String middlename, String lastname, String nickname, String address, String email, String email2, String email3, String bday, String bmonth, String byear) {
+    public ContactData(String firstname, String middlename, String lastname, String nickname, String address, String email, String email2, String email3, String bday, String bmonth, String byear) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
