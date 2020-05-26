@@ -1,4 +1,4 @@
-package my.pkg.addressbook;
+package my.pkg.addressbook.model;
 
 public class GroupData {
     private final String firstname;

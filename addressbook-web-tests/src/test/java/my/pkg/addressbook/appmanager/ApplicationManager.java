@@ -1,26 +1,24 @@
-package my.pkg.addressbook;
+package my.pkg.addressbook.appmanager;
 
+import my.pkg.addressbook.model.GroupData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
     public WebDriver wd;
-    protected boolean acceptNextAlert = true;
+    public boolean acceptNextAlert = true;
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-      wd = new FirefoxDriver();
-      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      wd.get("http://localhost/addressbook/");
-      login("admin", "secret");
+    public void init() {
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbook/");
+        login("admin", "secret");
     }
 
-    private void login(String username, String password) {
+    public void login(String username, String password) {
       wd.findElement(By.name("user")).clear();
       wd.findElement(By.name("user")).sendKeys(username);
       wd.findElement(By.name("pass")).clear();
@@ -28,7 +26,7 @@ public class TestBase {
       wd.findElement(By.id("LoginForm")).submit();
     }
 
-    protected void fillAddressForm(GroupData groupData) {
+    public void fillAddressForm(GroupData groupData) {
       wd.findElement(By.name("firstname")).click();
       wd.findElement(By.name("firstname")).clear();
       wd.findElement(By.name("firstname")).sendKeys(groupData.getFirstname());
@@ -62,27 +60,25 @@ public class TestBase {
       wd.findElement(By.xpath("//input[21]")).click();
     }
 
-    protected void initAdressCreation(String s) {
+    public void initAdressCreation(String s) {
       wd.findElement(By.linkText(s)).click();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-      gotoHomePage("home");
-      logout("Logout");
-      wd.quit();
-
+    public void stop() {
+        gotoHomePage("home");
+        logout("Logout");
+        wd.quit();
     }
 
-    private void logout(String logout) {
+    public void logout(String logout) {
       wd.findElement(By.linkText(logout)).click();
     }
 
-    private void gotoHomePage(String home) {
+    public void gotoHomePage(String home) {
       wd.findElement(By.linkText(home)).click();
     }
 
-    private boolean isElementPresent(By by) {
+    public boolean isElementPresent(By by) {
       try {
         wd.findElement(by);
         return true;
@@ -91,7 +87,7 @@ public class TestBase {
       }
     }
 
-    private boolean isAlertPresent() {
+    public boolean isAlertPresent() {
       try {
         wd.switchTo().alert();
         return true;
@@ -100,15 +96,15 @@ public class TestBase {
       }
     }
 
-    protected void deleteAdress(By xpath) {
+    public void deleteAdress(By xpath) {
       wd.findElement(xpath).click();
     }
 
-    protected void selectAdress(By id) {
+    public void selectAdress(By id) {
       wd.findElement(id).click();
     }
 
-    protected String closeAlertAndGetItsText() {
+    public String closeAlertAndGetItsText() {
       try {
         Alert alert = wd.switchTo().alert();
         String alertText = alert.getText();
