@@ -6,17 +6,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-    private final AlertHelper alertHelper = new AlertHelper();
+    WebDriver wd;
+    private AlertHelper alertHelper;
     private SessionHelper sessionHelper;
-    private final NavigationHelper navigationHelper = new NavigationHelper();
+    private  NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
 
     public void init() {
-        alertHelper.wd = new FirefoxDriver();
-        alertHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        alertHelper.wd.get("http://localhost/addressbook/");
-        contactHelper = new ContactHelper(alertHelper.wd);
-        sessionHelper = new SessionHelper(alertHelper.wd);
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbook/");
+        contactHelper = new ContactHelper(wd);
+        sessionHelper = new SessionHelper(wd);
+        alertHelper = new AlertHelper(wd);
+        navigationHelper = new NavigationHelper(wd);
         sessionHelper.login("admin", "secret");
     }
 
@@ -25,7 +28,7 @@ public class ApplicationManager {
     public void stop() {
         navigationHelper.gotoHomePage("home", contactHelper);
         logout("Logout");
-        alertHelper.wd.quit();
+        wd.quit();
     }
 
     public void logout(String logout) {
@@ -34,7 +37,7 @@ public class ApplicationManager {
 
     public boolean isElementPresent(By by) {
       try {
-        alertHelper.wd.findElement(by);
+        wd.findElement(by);
         return true;
       } catch (NoSuchElementException e) {
         return false;

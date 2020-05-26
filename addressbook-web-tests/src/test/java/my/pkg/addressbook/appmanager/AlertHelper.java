@@ -5,8 +5,12 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 
 public class AlertHelper {
-    public WebDriver wd;
+    private WebDriver wd;
     public boolean acceptNextAlert = true;
+
+    public AlertHelper(WebDriver wd) {
+        this.wd = wd;
+    }
 
     public boolean isAlertPresent() {
       try {
