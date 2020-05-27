@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     public WebDriver wd;
-    private boolean acceptNextAlert = true;
+    public boolean acceptNextAlert = true;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
@@ -107,5 +107,34 @@ public class TestBase {
 
     public void selectGroup() {
       wd.findElement(By.name("selected[]")).click();
+    }
+
+    public void sobmitContactCreation() {
+      wd.findElement(By.xpath("//input[21]")).click();
+    }
+
+    public void fillContactForm(ContactData contactData) {
+      wd.findElement(By.name("firstname")).click();
+      wd.findElement(By.name("firstname")).clear();
+      wd.findElement(By.name("firstname")).sendKeys(contactData.getfName());
+      wd.findElement(By.name("middlename")).click();
+      wd.findElement(By.name("middlename")).clear();
+      wd.findElement(By.name("middlename")).sendKeys(contactData.getMidName());
+      wd.findElement(By.name("lastname")).click();
+      wd.findElement(By.name("lastname")).clear();
+      wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
+      wd.findElement(By.name("nickname")).click();
+      wd.findElement(By.name("nickname")).clear();
+      wd.findElement(By.name("nickname")).sendKeys(contactData.getNickName());
+      wd.findElement(By.name("mobile")).click();
+      wd.findElement(By.name("mobile")).clear();
+      wd.findElement(By.name("mobile")).sendKeys(contactData.getMobPhone());
+      wd.findElement(By.name("email")).click();
+      wd.findElement(By.name("email")).clear();
+      wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    }
+
+    public void initContact() {
+      wd.findElement(By.linkText("add new")).click();
     }
 }
