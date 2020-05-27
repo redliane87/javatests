@@ -1,5 +1,6 @@
 package my.pkg.addressbook.tests;
 
+import my.pkg.addressbook.model.GroupData;
 import org.testng.annotations.*;
 
 public class NewGroupCreationTest extends TestBase {

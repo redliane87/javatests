@@ -1,4 +1,4 @@
-package my.pkg.addressbook.tests;
+package my.pkg.addressbook.model;
 
 public class ContactData {
     private final String fName;

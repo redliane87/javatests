@@ -1,5 +1,7 @@
-package my.pkg.addressbook.tests;
+package my.pkg.addressbook.appmanager;
 
+import my.pkg.addressbook.model.ContactData;
+import my.pkg.addressbook.model.GroupData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -65,7 +67,7 @@ public class ApplicationManager {
       wd.findElement(By.linkText("home")).click();
     }
 
-    private boolean isElementPresent(By by) {
+    public boolean isElementPresent(By by) {
       try {
         wd.findElement(by);
         return true;
@@ -74,7 +76,7 @@ public class ApplicationManager {
       }
     }
 
-    private boolean isAlertPresent() {
+    public boolean isAlertPresent() {
       try {
         wd.switchTo().alert();
         return true;
