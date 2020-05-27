@@ -1,7 +1,7 @@
 package my.pkg.addressbook.tests;
 
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
 public class ContactDeleteTest extends TestBase {
@@ -10,9 +10,9 @@ public class ContactDeleteTest extends TestBase {
   public void testContactDelete() throws Exception {
 
     app.gotoHomePage();
-    app.selectContact();
-    app.acceptNextAlert = true;
-    app.selectDeleteContact();
+    app.getContactHelper().selectContact();
+    app.getContactHelper().acceptNextAlert = true;
+    app.getContactHelper().selectDeleteContact();
   }
 
 }
