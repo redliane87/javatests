@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertTrue;
+
 public class TestBase {
     public WebDriver wd;
     public boolean acceptNextAlert = true;
@@ -86,7 +88,7 @@ public class TestBase {
       }
     }
 
-    private String closeAlertAndGetItsText() {
+    public String closeAlertAndGetItsText() {
       try {
         Alert alert = wd.switchTo().alert();
         String alertText = alert.getText();
@@ -136,5 +138,14 @@ public class TestBase {
 
     public void initContact() {
       wd.findElement(By.linkText("add new")).click();
+    }
+
+    public void selectDeleteContact() {
+      wd.findElement(By.xpath("//input[@value='Delete']")).click();
+      assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+    }
+
+    public void selectContact() {
+      wd.findElement(By.xpath("//tr[8]/td/input")).click();
     }
 }
