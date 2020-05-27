@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    private WebDriver wd;
+    public WebDriver wd;
     private boolean acceptNextAlert = true;
 
     @BeforeMethod(alwaysRun = true)
@@ -99,5 +99,13 @@ public class TestBase {
       } finally {
         acceptNextAlert = true;
       }
+    }
+
+    public void selectDeleteGroup() {
+      wd.findElement(By.xpath("//input[5]")).click();
+    }
+
+    public void selectGroup() {
+      wd.findElement(By.name("selected[]")).click();
     }
 }
