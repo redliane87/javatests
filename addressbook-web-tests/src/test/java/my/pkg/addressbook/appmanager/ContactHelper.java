@@ -39,8 +39,8 @@ public class ContactHelper extends HelperBase{
         return new Select(wd.findElement(By.name(bday)));
     }
 
-    public void initAdressCreation(String s) {
-        getClick(By.linkText(s));
+    public void initAdressCreation() {
+        getClick(By.linkText("add new"));
     }
 
     public void deleteAdress(By xpath) {
