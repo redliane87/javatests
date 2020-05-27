@@ -10,10 +10,10 @@ import static org.testng.Assert.assertTrue;
 
 public class ApplicationManager {
     public WebDriver wd;
-    private AlertHelper alertHelper;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
+    public boolean acceptNextAlert = true;
 
     public void init() {
        wd = new FirefoxDriver();
@@ -22,7 +22,6 @@ public class ApplicationManager {
        groupHelper = new GroupHelper(wd);
        navigationHelper = new NavigationHelper(wd);
        sessionHelper = new SessionHelper(wd);
-       alertHelper = new AlertHelper(wd);
        sessionHelper.login("admin", "secret");
     }
 
@@ -47,6 +46,30 @@ public class ApplicationManager {
         return true;
       } catch (NoSuchElementException e) {
         return false;
+      }
+    }
+
+    public boolean isAlertPresent() {
+      try {
+        wd.switchTo().alert();
+        return true;
+      } catch (NoAlertPresentException e) {
+        return false;
+      }
+    }
+
+    public String closeAlertAndGetItsText() {
+      try {
+        Alert alert = wd.switchTo().alert();
+        String alertText = alert.getText();
+        if (acceptNextAlert) {
+          alert.accept();
+        } else {
+          alert.dismiss();
+        }
+        return alertText;
+      } finally {
+        acceptNextAlert = true;
       }
     }
 
@@ -81,7 +104,7 @@ public class ApplicationManager {
 
     public void selectDeleteContact() {
       wd.findElement(By.xpath("//input[@value='Delete']")).click();
-      assertTrue(alertHelper.closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+      assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
 
     public void selectContact() {
@@ -94,9 +117,5 @@ public class ApplicationManager {
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
-    }
-
-    public AlertHelper getAlertHelper() {
-        return alertHelper;
     }
 }
