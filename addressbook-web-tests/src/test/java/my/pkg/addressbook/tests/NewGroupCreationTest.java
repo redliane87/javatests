@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 public class NewGroupCreationTest extends TestBase {
 
   @Test
-  public void testNewGroupCreation() throws Exception {
+  public void testNewGroupCreation() {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().initGroupCreation();
     app.getGroupHelper().fillGroupForm(new GroupData("test001", "test002", "test003"));
