@@ -9,10 +9,10 @@ public class ContactDeleteTest extends TestBase {
   @Test
   public void testContactDelete() throws Exception {
 
-    gotoHomePage();
-    selectContact();
-    acceptNextAlert = true;
-    selectDeleteContact();
+    app.gotoHomePage();
+    app.selectContact();
+    app.acceptNextAlert = true;
+    app.selectDeleteContact();
   }
 
 }
