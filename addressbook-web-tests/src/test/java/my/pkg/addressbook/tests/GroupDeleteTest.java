@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class GroupDeleteTest {
+public class GroupDeleteTest extends TestBase {
   private WebDriver wd;
   private boolean acceptNextAlert = true;
 
