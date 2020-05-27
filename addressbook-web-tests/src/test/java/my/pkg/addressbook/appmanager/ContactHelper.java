@@ -7,64 +7,52 @@ import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.assertTrue;
 
-public class ContactHelper {
-    private WebDriver wd;
+public class ContactHelper extends HelperBase {
     public boolean acceptNextAlert = true;
 
     public ContactHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public String closeAlertAndGetItsText() {
-      try {
-        Alert alert = wd.switchTo().alert();
-        String alertText = alert.getText();
-        if (acceptNextAlert) {
-          alert.accept();
-        } else {
-          alert.dismiss();
+        try {
+            Alert alert = wd.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
         }
-        return alertText;
-      } finally {
-        acceptNextAlert = true;
-      }
     }
 
     public void sobmitContactCreation() {
-      wd.findElement(By.xpath("//input[21]")).click();
+        click(By.xpath("//input[21]"));
     }
 
     public void fillContactForm(ContactData contactData) {
-      wd.findElement(By.name("firstname")).click();
-      wd.findElement(By.name("firstname")).clear();
-      wd.findElement(By.name("firstname")).sendKeys(contactData.getfName());
-      wd.findElement(By.name("middlename")).click();
-      wd.findElement(By.name("middlename")).clear();
-      wd.findElement(By.name("middlename")).sendKeys(contactData.getMidName());
-      wd.findElement(By.name("lastname")).click();
-      wd.findElement(By.name("lastname")).clear();
-      wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-      wd.findElement(By.name("nickname")).click();
-      wd.findElement(By.name("nickname")).clear();
-      wd.findElement(By.name("nickname")).sendKeys(contactData.getNickName());
-      wd.findElement(By.name("mobile")).click();
-      wd.findElement(By.name("mobile")).clear();
-      wd.findElement(By.name("mobile")).sendKeys(contactData.getMobPhone());
-      wd.findElement(By.name("email")).click();
-      wd.findElement(By.name("email")).clear();
-      wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+        type(By.name("firstname"), contactData.getfName());
+        type(By.name("middlename"), contactData.getMidName());
+        type(By.name("lastname"), contactData.getLastName());
+        type(By.name("nickname"), contactData.getNickName());
+        type(By.name("mobile"), contactData.getMobPhone());
+        type(By.name("email"), contactData.getEmail());
+
     }
 
     public void initContact() {
-      wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void selectDeleteContact() {
-      wd.findElement(By.xpath("//input[@value='Delete']")).click();
-      assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+        click(By.xpath("//input[@value='Delete']"));
+        assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
 
     public void selectContact() {
-      wd.findElement(By.xpath("//tr[8]/td/input")).click();
+        click(By.xpath("//tr[8]/td/input"));
     }
 }
