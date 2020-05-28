@@ -55,4 +55,12 @@ public class ContactHelper extends HelperBase {
     public void selectContact() {
         click(By.xpath("//tr[8]/td/input"));
     }
+
+    public void initMidificationContact() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("//input[22]"));
+    }
 }
