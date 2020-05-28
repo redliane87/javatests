@@ -16,7 +16,7 @@ public class ApplicationManager {
     public void init() {
        wd = new FirefoxDriver();
        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-       wd.get("http://127.0.0.1/addressbook/group.php");
+       wd.get("http://127.0.0.1/addressbook/");
        groupHelper = new GroupHelper(wd);
        contactHelper = new ContactHelper(wd);
        navigationHelper = new NavigationHelper(wd);
