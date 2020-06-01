@@ -53,7 +53,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.xpath("//tr[8]/td/input"));
+        click(By.xpath("//td/input"));
     }
 
     public void initModifications() {
