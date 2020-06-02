@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase {
         if(creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
+            Assert.assertFalse(isElementPresent(By.name("new_group"))); // контроль над тем, что поля прикрепления контакта к группам нет совсем (если пявится тест упадет)
         }
 
 
