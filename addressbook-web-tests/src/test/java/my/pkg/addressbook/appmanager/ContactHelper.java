@@ -4,6 +4,7 @@ import my.pkg.addressbook.model.ContactData;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.testng.Assert.assertTrue;
 
@@ -40,6 +41,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("nickname"), contactData.getNickName());
         type(By.name("mobile"), contactData.getMobPhone());
         type(By.name("email"), contactData.getEmail());
+        if (isElementPresent(By.name("new_group"))) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        }
 
     }
 
