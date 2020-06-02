@@ -1,5 +1,6 @@
 package my.pkg.addressbook.tests;
 
+import my.pkg.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupDeleteTest extends TestBase {
@@ -8,6 +9,9 @@ public class GroupDeleteTest extends TestBase {
   public void testGroupDelete() {
 
     app.getNavigationHelper().gotoGroupPage();
+    if (! app.getGroupHelper().isThereAgroup()){
+      app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
+    }
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().selectDeleteGroup();
 
