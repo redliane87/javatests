@@ -12,9 +12,9 @@ public class ContactModificationTest extends TestBase {
             app.getContactHelper().createContact(new ContactData("test1", null, "test3", "test4", "8880978", "redliane@mail.ru",null), true);
             app.getNavigationHelper().gotoHomePage();
         }
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(before - 1);
         app.getContactHelper().initModifications();
-        app.getContactHelper().fillContactForm(new ContactData("test1", "test2", "test3", "test4", "8880978", "redliane@mail.ru", null), false);
+        app.getContactHelper().fillContactForm(new ContactData("test999", "test2", "test3", "test4", "8880978", "redliane@mail.ru", null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().gotoHomePage();
         int after = app.getContactHelper().getContactCount(); // Колличество контактов после добавления
