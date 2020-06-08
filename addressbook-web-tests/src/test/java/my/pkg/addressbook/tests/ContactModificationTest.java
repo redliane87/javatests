@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 public class ContactModificationTest extends TestBase {
     @Test
     public void testContactModification() {
-        if (!app.getContactHelper().isTheAreContact()) {
+        if (! app.getContactHelper().isTheAreContact()) {
             app.getContactHelper().createContact(new ContactData("test1", null, "test3", "test4", "8880978", "redliane@mail.ru",null), true);
             app.getNavigationHelper().gotoHomePage();
         }
