@@ -4,21 +4,23 @@ import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
+
 
 public class GroupModificationTest extends TestBase {
     @Test
     public void testGroupModification () {
         app.getNavigationHelper().gotoGroupPage();
-        int before = app.getGroupHelper().getGroupCount(); // колличество групп до добавления
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
         }
-        app.getGroupHelper().selectGroup(before - 1);
+        List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
+        app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().initModification();
         app.getGroupHelper().fillGroupForm(new GroupData("test004", "test002", "test003"));
         app.getGroupHelper().submitGroupModification();
         app.getNavigationHelper().gotoGroupPage();
-        int after = app.getGroupHelper().getGroupCount(); // Колличество групп после добавления
-        Assert.assertEquals (after, before); // Проверка на колличество групп до и после добавления
+        List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
+        Assert.assertEquals (after.size(), before.size()); // Проверка на колличество групп до и после добавления
     }
 }

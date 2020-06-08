@@ -4,16 +4,18 @@ import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
+
 public class NewGroupCreationTest extends TestBase {
 
   @Test
   public void testNewGroupCreation() {
 
     app.getNavigationHelper().gotoGroupPage();
-    int before = app.getGroupHelper().getGroupCount(); // колличество групп до добавления
+    List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
     app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
-    int after = app.getGroupHelper().getGroupCount(); // Колличество групп после добавления
-    Assert.assertEquals (after, before + 1); // Проверка на колличество групп до и после добавления
+    List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
+    Assert.assertEquals (after.size(), before.size() + 1); // Проверка на колличество групп до и после добавления
   }
 
 }
