@@ -8,19 +8,23 @@ import java.util.List;
 
 public class GroupDeleteTest extends TestBase {
 
-  @Test
-  public void testGroupDelete() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()){
-      app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
-    }
-    List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
-    app.getGroupHelper().selectGroup(before.size() - 1);
-    app.getGroupHelper().selectDeleteGroup();
-    app.getNavigationHelper().gotoGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
-    Assert.assertEquals (after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
+    @Test
+    public void testGroupDelete() {
+        app.getNavigationHelper().gotoGroupPage();
+        if (!app.getGroupHelper().isThereAGroup()) {
+            app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
+        }
+        List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
+        app.getGroupHelper().selectGroup(before.size() - 1);
+        app.getGroupHelper().selectDeleteGroup();
+        app.getNavigationHelper().gotoGroupPage();
+        List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
+        Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
 
-  }
+        before.remove(before.size() - 1);
+
+        Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
+
+    }
 
 }
