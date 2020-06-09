@@ -4,8 +4,12 @@ import my.pkg.addressbook.model.ContactData;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
@@ -39,6 +43,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getfName());
         type(By.name("middlename"), contactData.getMidName());
         type(By.name("lastname"), contactData.getLastName());
+        type(By.name("address"),contactData.getAddress());
         type(By.name("nickname"), contactData.getNickName());
         type(By.name("mobile"), contactData.getMobPhone());
         type(By.name("email"), contactData.getEmail());
@@ -73,8 +78,9 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[22]"));
     }
 
-    public void createContact(ContactData contactData, boolean b) {
+    public void createContact(ContactData contactData, boolean creation) {
         initContact();
+        fillContactForm(contactData,creation);
         sobmitContactCreation();
     }
 
@@ -86,4 +92,20 @@ public class ContactHelper extends HelperBase {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            String fName = element.findElement(By.xpath(".//td[3]")).getText();
+            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+            String address = element.findElement(By.xpath(".//td[4]")).getText();
+            ContactData contact = new ContactData(fName, null, lastName, null, address, null, null, null);
+            contacts.add(contact);
+        }
+
+return contacts;
+
+    }
+
 }

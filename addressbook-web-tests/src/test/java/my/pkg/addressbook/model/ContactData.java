@@ -1,19 +1,21 @@
 package my.pkg.addressbook.model;
 
 public class ContactData {
-    private final String fName;
-    private final String midName;
-    private final String lastName;
-    private final String nickName;
-    private final String mobPhone;
-    private final String email;
+    private String fName;
+    private String midName;
+    private String lastName;
+    private String nickName;
+    private String address;
+    private String mobPhone;
+    private String email;
     private String group;
 
-    public ContactData(String fName, String midName, String lastName, String nickName, String mobPhone, String email, String group) {
+    public ContactData(String fName, String midName, String lastName, String nickName, String address, String mobPhone, String email, String group) {
         this.fName = fName;
         this.midName = midName;
         this.lastName = lastName;
         this.nickName = nickName;
+        this.address = address;
         this.mobPhone = mobPhone;
         this.email = email;
         this.group = group;
@@ -35,6 +37,8 @@ public class ContactData {
         return nickName;
     }
 
+    public String getAddress() {return address;}
+
     public String getMobPhone() {
         return mobPhone;
     }
@@ -43,7 +47,5 @@ public class ContactData {
         return email;
     }
 
-    public String getGroup() {
-        return group;
-    }
+    public String getGroup() { return group; }
 }
