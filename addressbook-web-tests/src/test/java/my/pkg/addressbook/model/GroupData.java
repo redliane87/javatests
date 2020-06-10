@@ -7,7 +7,7 @@ public class GroupData {
     private  String gfooter;
 
     public GroupData(String gname, String gheader, String gfooter) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;
         this.gname = gname;
         this.gheader = gheader;
         this.gfooter = gfooter;
@@ -54,14 +54,11 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
-        if (id != groupData.id) return false;
         return gname != null ? gname.equals(groupData.gname) : groupData.gname == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (gname != null ? gname.hashCode() : 0);
-        return result;
+        return gname != null ? gname.hashCode() : 0;
     }
 }
