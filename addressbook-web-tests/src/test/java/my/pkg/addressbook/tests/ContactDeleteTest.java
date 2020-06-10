@@ -5,6 +5,7 @@ import my.pkg.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -25,6 +26,9 @@ public class ContactDeleteTest extends TestBase {
         Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество контактов до и после добавления
 
         before.remove(before.size() - 1);
+        Comparator<? super ContactData> byId = (с1, с2) -> Integer.compare(с1.getId(), с2.getId());
+        before.sort(byId);
+        after.sort(byId);
         Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
     }
 
