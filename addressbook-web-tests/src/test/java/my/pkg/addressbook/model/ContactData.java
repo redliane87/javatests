@@ -1,7 +1,7 @@
 package my.pkg.addressbook.model;
 
 public class ContactData {
-    private String id;
+    private int id;
     private String fName;
     private String midName;
     private String lastName;
@@ -12,7 +12,7 @@ public class ContactData {
     private String group;
 
     public ContactData(String fName, String midName, String lastName, String nickName, String address, String mobPhone, String email, String group) {
-        this.id = null;
+        this.id = 0;
         this.fName = fName;
         this.midName = midName;
         this.lastName = lastName;
@@ -23,7 +23,7 @@ public class ContactData {
         this.group = group;
     }
 
-    public ContactData(String id, String fName, String midName, String lastName, String nickName, String address, String mobPhone, String email, String group) {
+    public ContactData(int id, String fName, String midName, String lastName, String nickName, String address, String mobPhone, String email, String group) {
         this.id = id;
         this.fName = fName;
         this.midName = midName;
@@ -35,9 +35,11 @@ public class ContactData {
         this.group = group;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
+
+    public void setId(int id) { this.id = id; }
 
     public String getfName() {
         return fName;
@@ -84,7 +86,7 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
         if (fName != null ? !fName.equals(that.fName) : that.fName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
         return address != null ? address.equals(that.address) : that.address == null;
@@ -92,7 +94,7 @@ public class ContactData {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (fName != null ? fName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
