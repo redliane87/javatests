@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTest extends TestBase {
     @BeforeMethod
@@ -19,20 +20,17 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification() {
-        List<ContactData> before = app.contact().list(); // колличество контактов до добавления
-        int index = before.size() - 1;
-        ContactData contactData = new ContactData().withId(before.get(index).getId()).withFName("test1").withLastName("test4").withMidName("test3")
+        Set<ContactData> before = app.contact().all(); // колличество контактов до добавления
+        ContactData modifiedContact = before.iterator().next();
+        ContactData contactData = new ContactData().withId(modifiedContact.getId()).withFName("test105").withLastName("test555").withMidName("test3")
                 .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup(null);
-        app.contact().modify(index, contactData);
+        app.contact().modify(contactData);
         app.goTo().homePage();
-        List<ContactData> after = app.contact().list(); // Колличество контактов после добавления
+        Set<ContactData> after = app.contact().all(); // Колличество контактов после добавления
         Assert.assertEquals(after.size(), before.size()); // Проверка на колличество контактов до и после добавления
 
-        before.remove(index);
+        before.remove(modifiedContact);
         before.add(contactData);
-        Comparator<? super ContactData> byId = (с1, с2) -> Integer.compare(с1.getId(), с2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before, after);
     }
 

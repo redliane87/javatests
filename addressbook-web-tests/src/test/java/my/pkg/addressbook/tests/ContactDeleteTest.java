@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 
 public class ContactDeleteTest extends TestBase {
@@ -22,17 +23,14 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDelete() {
-        List<ContactData> before = app.contact().list(); // колличество контактов до добавления
-        int index = before.size() - 1;
-        app.contact().delete(index);
+        Set<ContactData> before = app.contact().all(); // колличество контактов до добавления
+        ContactData delContact = before.iterator().next();
+        app.contact().delete(delContact);
         app.goTo().homePage();
-        List<ContactData> after = app.contact().list(); // Колличество контактов после добавления
+        Set<ContactData> after = app.contact().all(); // Колличество контактов после добавления
         Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество контактов до и после добавления
 
-        before.remove(index);
-        Comparator<? super ContactData> byId = (с1, с2) -> Integer.compare(с1.getId(), с2.getId());
-        before.sort(byId);
-        after.sort(byId);
+        before.remove(delContact);
         Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
     }
 
