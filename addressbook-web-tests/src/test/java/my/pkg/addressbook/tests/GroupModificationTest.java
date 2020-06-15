@@ -3,6 +3,7 @@ package my.pkg.addressbook.tests;
 import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -10,27 +11,33 @@ import java.util.List;
 
 
 public class GroupModificationTest extends TestBase {
-    @Test
-    public void testGroupModification () {
+    @BeforeMethod
+    public void ensurePreconditions() {
         app.getNavigationHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereAGroup()){
+        if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
         }
+
+    }
+
+    @Test
+    public void testGroupModification() {
+
         List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        app.getGroupHelper().initModification();
-        GroupData group = new GroupData(before.get(before.size() - 1).getId(),"test001", "test002", "test003");
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupModification();
+        int index = before.size() - 1;
+        GroupData group = new GroupData(before.get(index).getId(), "test001", "test002", "test003");
+        app.getGroupHelper().modifyGroup(index, group);
         app.getNavigationHelper().gotoGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
-        Assert.assertEquals (after.size(), before.size()); // Проверка на колличество групп до и после добавления
+        Assert.assertEquals(after.size(), before.size()); // Проверка на колличество групп до и после добавления
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         before.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);
         after.sort(byId);
         Assert.assertEquals(before, after);
     }
+
+
 }

@@ -2,19 +2,23 @@ package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
 
 public class GroupDeleteTest extends TestBase {
-
-    @Test
-    public void testGroupDelete() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         app.getNavigationHelper().gotoGroupPage();
         if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
         }
+
+    }
+    @Test
+    public void testGroupDelete() {
         List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
         app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().selectDeleteGroup();

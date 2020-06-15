@@ -50,7 +50,12 @@ public class GroupHelper extends HelperBase {
         submitGroupCretion();
         returnToGroupPage();
     }
-
+    public void modifyGroup(int index, GroupData group) {
+        selectGroup(index);
+        initModification();
+        fillGroupForm(group);
+        submitGroupModification();
+    }
     public void returnToGroupPage() {
         click(By.linkText("groups"));
     }
