@@ -13,6 +13,7 @@ public class NewContactCreationTest extends TestBase {
 
     @Test
     public void testNewContactCreation() {
+        app.getNavigationHelper().gotoHomePage();
         List<ContactData> before = app.getContactHelper().getContactList(); // колличество контактов до добавления
         ContactData contactData = new ContactData("test668", "test4", "test3", "123", "test4", "8880978", "redliane@mail.ru", "test001");
         app.getContactHelper().createContact(contactData, true);

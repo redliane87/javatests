@@ -1,10 +1,8 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
-import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
