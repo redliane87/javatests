@@ -3,6 +3,7 @@ package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -10,13 +11,16 @@ import java.util.List;
 
 
 public class ContactDeleteTest extends TestBase {
-
-    @Test
-    public void testContactDelete() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         if (!app.getContactHelper().isTheAreContact()) {
             app.getContactHelper().createContact(new ContactData("test1", null, "test3", "123", "test4", "8880978", "redliane@mail.ru", null), true);
             app.getNavigationHelper().gotoHomePage();
         }
+    }
+
+    @Test
+    public void testContactDelete() {
         List<ContactData> before = app.getContactHelper().getContactList(); // колличество контактов до добавления
         app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().acceptNextAlert = true;
