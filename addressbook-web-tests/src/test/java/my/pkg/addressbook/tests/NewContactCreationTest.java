@@ -2,18 +2,12 @@ package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
+
 
 public class NewContactCreationTest extends TestBase {
 
