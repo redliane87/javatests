@@ -1,6 +1,9 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.GroupData;
+import my.pkg.addressbook.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +11,10 @@ import org.testng.annotations.Test;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupDeleteTest extends TestBase {
     @BeforeMethod
@@ -18,20 +25,18 @@ public class GroupDeleteTest extends TestBase {
         }
 
     }
+
     @Test
     public void testGroupDelete() {
-        Set<GroupData> before = app.group().all(); // колличество групп до добавления. Список
+        Groups before = app.group().all(); // колличество групп до добавления. Список
         GroupData deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);
         app.goTo().groupPage();
-        Set<GroupData> after = app.group().all(); // Колличество групп после добавления. Список
-        Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
-
-        before.remove(deletedGroup);
-        Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
+        Groups after = app.group().all(); // Колличество групп после добавления. Список
+        assertEquals(after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
+        assertThat(after, equalTo(before.without(deletedGroup)));
 
     }
-
 
 
 }
