@@ -10,20 +10,20 @@ import java.util.List;
 public class ContactModificationTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        if (!app.getContactHelper().isTheAreContact()) {
-            app.getContactHelper().createContact(new ContactData("test1", null, "test3", "123", "test4", "8880978", "redliane@mail.ru", null), true);
-            app.getNavigationHelper().gotoHomePage();
+        if (app.contact().list().size() == 0) {
+            app.contact().create(new ContactData("test1", null, "test3", "123", "test4", "8880978", "redliane@mail.ru", null), true);
+            app.goTo().homePage();
         }
     }
 
     @Test
     public void testContactModification() {
-        List<ContactData> before = app.getContactHelper().getContactList(); // колличество контактов до добавления
+        List<ContactData> before = app.contact().list(); // колличество контактов до добавления
         int index = before.size() - 1;
         ContactData contactData = new ContactData(before.get(index).getId(), "test999", "test2", "test3", "123", "test4", "8880978", "redliane@mail.ru", null);
-        app.getContactHelper().modifyContact(index, contactData);
-        app.getNavigationHelper().gotoHomePage();
-        List<ContactData> after = app.getContactHelper().getContactList(); // Колличество контактов после добавления
+        app.contact().modify(index, contactData);
+        app.goTo().homePage();
+        List<ContactData> after = app.contact().list(); // Колличество контактов после добавления
         Assert.assertEquals(after.size(), before.size()); // Проверка на колличество контактов до и после добавления
 
         before.remove(index);

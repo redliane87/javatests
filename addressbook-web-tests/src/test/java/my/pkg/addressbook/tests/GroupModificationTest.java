@@ -4,18 +4,16 @@ import my.pkg.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 
 public class GroupModificationTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        app.getNavigationHelper().gotoGroupPage();
-        if (!app.getGroupHelper().isThereAGroup()) {
-            app.getGroupHelper().creatGroup(new GroupData("test001", null, null));
+        app.goTo().GroupPage();
+        if (app.group().list().size() == 0) {
+            app.group().create(new GroupData("test001", null, null));
         }
 
     }
@@ -23,12 +21,12 @@ public class GroupModificationTest extends TestBase {
     @Test
     public void testGroupModification() {
 
-        List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
+        List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
         int index = before.size() - 1;
         GroupData group = new GroupData(before.get(index).getId(), "test001", "test002", "test003");
-        app.getGroupHelper().modifyGroup(index, group);
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
+        app.group().modify(index, group);
+        app.goTo().GroupPage();
+        List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size()); // Проверка на колличество групп до и после добавления
 
         before.remove(index);

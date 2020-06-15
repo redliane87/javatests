@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class NewGroupCreationTest extends TestBase {
@@ -14,11 +13,11 @@ public class NewGroupCreationTest extends TestBase {
     @Test
     public void testNewGroupCreation() {
 
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> before = app.getGroupHelper().getGroupList(); // колличество групп до добавления. Список
+        app.goTo().GroupPage();
+        List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
         GroupData group = new GroupData("test003", null, null);
-        app.getGroupHelper().creatGroup(group);
-        List<GroupData> after = app.getGroupHelper().getGroupList(); // Колличество групп после добавления. Список
+        app.group().create(group);
+        List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size() + 1); // Проверка на колличество групп до и после добавления
 
 
