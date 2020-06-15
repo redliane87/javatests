@@ -2,6 +2,9 @@ package my.pkg.addressbook.tests;
 
 
 import my.pkg.addressbook.model.ContactData;
+import my.pkg.addressbook.model.Contacts;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,6 +12,10 @@ import org.testng.annotations.Test;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 
 public class ContactDeleteTest extends TestBase {
@@ -23,17 +30,16 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDelete() {
-        Set<ContactData> before = app.contact().all(); // колличество контактов до добавления
+        Contacts before = app.contact().all(); // колличество контактов до добавления
         ContactData delContact = before.iterator().next();
         app.contact().delete(delContact);
         app.goTo().homePage();
-        Set<ContactData> after = app.contact().all(); // Колличество контактов после добавления
-        Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество контактов до и после добавления
+        Contacts after = app.contact().all(); // Колличество контактов после добавления
+        assertEquals(after.size(), before.size() - 1); // Проверка на колличество контактов до и после добавления
+        assertThat(after, equalTo(before.without(delContact)));
 
-        before.remove(delContact);
-        Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
+
     }
-
 
 
 }
