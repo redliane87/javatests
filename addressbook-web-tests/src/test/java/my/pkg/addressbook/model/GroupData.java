@@ -2,21 +2,21 @@ package my.pkg.addressbook.model;
 
 public class GroupData {
     private  int id;
-    private  String gname;
-    private  String gheader;
-    private  String gfooter;
+    private  String name;
+    private  String header;
+    private  String footer;
 
-    public GroupData(String gname, String gheader, String gfooter) {
+    public GroupData(String name, String header, String footer) {
         this.id = Integer.MAX_VALUE;
-        this.gname = gname;
-        this.gheader = gheader;
-        this.gfooter = gfooter;
+        this.name = name;
+        this.header = header;
+        this.footer = footer;
     }
-    public GroupData(int id, String gname, String gheader, String gfooter) {
+    public GroupData(int id, String name, String header, String footer) {
         this.id = id;
-        this.gname = gname;
-        this.gheader = gheader;
-        this.gfooter = gfooter;
+        this.name = name;
+        this.header = header;
+        this.footer = footer;
     }
 
     public int getId() {
@@ -27,23 +27,23 @@ public class GroupData {
         this.id = id;
     }
 
-    public String getGname() {
-        return gname;
+    public String getName() {
+        return name;
     }
 
-    public String getGheader() {
-        return gheader;
+    public String getHeader() {
+        return header;
     }
 
-    public String getGfooter() {
-        return gfooter;
+    public String getFooter() {
+        return footer;
     }
 
     @Override
     public String toString() {
         return "GroupData{" +
                 "id='" + id + '\'' +
-                ", gname='" + gname + '\'' +
+                ", gname='" + name + '\'' +
                 '}';
     }
 
@@ -54,11 +54,11 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
-        return gname != null ? gname.equals(groupData.gname) : groupData.gname == null;
+        return name != null ? name.equals(groupData.name) : groupData.name == null;
     }
 
     @Override
     public int hashCode() {
-        return gname != null ? gname.hashCode() : 0;
+        return name != null ? name.hashCode() : 0;
     }
 }
