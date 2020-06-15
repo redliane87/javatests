@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class NewGroupCreationTest extends TestBase {
 
@@ -14,18 +15,16 @@ public class NewGroupCreationTest extends TestBase {
     public void testNewGroupCreation() {
 
         app.goTo().groupPage();
-        List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
+        Set<GroupData> before = app.group().all(); // колличество групп до добавления. Список
         GroupData group = new GroupData().withName("test003");
         app.group().create(group);
-        List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
+        Set<GroupData> after = app.group().all(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size() + 1); // Проверка на колличество групп до и после добавления
 
 
 
+        group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         before.add(group);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before, after);
     }
 

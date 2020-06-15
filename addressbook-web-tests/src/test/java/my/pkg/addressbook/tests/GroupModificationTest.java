@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 
 public class GroupModificationTest extends TestBase {
@@ -21,20 +22,17 @@ public class GroupModificationTest extends TestBase {
     @Test
     public void testGroupModification() {
 
-        List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
-        int index = before.size() - 1;
+        Set<GroupData> before = app.group().all(); // колличество групп до добавления. Список
+        GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData()
-                .withId(before.get(index).getId()).withName("test001").withHeader("test002").withFooter("test003");
-        app.group().modify(index, group);
+                .withId(modifiedGroup.getId()).withName("test001").withHeader("test002").withFooter("test003");
+        app.group().modify(group);
         app.goTo().groupPage();
-        List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
+        Set<GroupData> after = app.group().all(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size()); // Проверка на колличество групп до и после добавления
 
-        before.remove(index);
+        before.remove(modifiedGroup);
         before.add(group);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before, after);
     }
 

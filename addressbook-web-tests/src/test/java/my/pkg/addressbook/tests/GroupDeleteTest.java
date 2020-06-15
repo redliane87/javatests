@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupDeleteTest extends TestBase {
     @BeforeMethod
@@ -19,17 +20,14 @@ public class GroupDeleteTest extends TestBase {
     }
     @Test
     public void testGroupDelete() {
-        List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
-        int index = before.size() - 1;
-        app.group().delete(index);
+        Set<GroupData> before = app.group().all(); // колличество групп до добавления. Список
+        GroupData deletedGroup = before.iterator().next();
+        app.group().delete(deletedGroup);
         app.goTo().groupPage();
-        List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
+        Set<GroupData> after = app.group().all(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
 
-        before.remove(index);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
+        before.remove(deletedGroup);
         Assert.assertEquals(before, after);// Сравниваем элементы с одинаковыми индексами
 
     }
