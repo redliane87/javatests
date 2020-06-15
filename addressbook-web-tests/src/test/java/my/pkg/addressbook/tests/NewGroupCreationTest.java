@@ -13,7 +13,7 @@ public class NewGroupCreationTest extends TestBase {
     @Test
     public void testNewGroupCreation() {
 
-        app.goTo().GroupPage();
+        app.goTo().groupPage();
         List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
         GroupData group = new GroupData("test003", null, null);
         app.group().create(group);

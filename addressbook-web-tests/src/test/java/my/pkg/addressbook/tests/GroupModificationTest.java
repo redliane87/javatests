@@ -11,7 +11,7 @@ import java.util.List;
 public class GroupModificationTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().GroupPage();
+        app.goTo().groupPage();
         if (app.group().list().size() == 0) {
             app.group().create(new GroupData("test001", null, null));
         }
@@ -25,7 +25,7 @@ public class GroupModificationTest extends TestBase {
         int index = before.size() - 1;
         GroupData group = new GroupData(before.get(index).getId(), "test001", "test002", "test003");
         app.group().modify(index, group);
-        app.goTo().GroupPage();
+        app.goTo().groupPage();
         List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size()); // Проверка на колличество групп до и после добавления
 

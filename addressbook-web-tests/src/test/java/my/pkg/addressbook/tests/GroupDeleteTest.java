@@ -11,7 +11,7 @@ import java.util.List;
 public class GroupDeleteTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().GroupPage();
+        app.goTo().groupPage();
         if (app.group().list().size() == 0) {
             app.group().create(new GroupData("test001", null, null));
         }
@@ -22,7 +22,7 @@ public class GroupDeleteTest extends TestBase {
         List<GroupData> before = app.group().list(); // колличество групп до добавления. Список
         int index = before.size() - 1;
         app.group().delete(index);
-        app.goTo().GroupPage();
+        app.goTo().groupPage();
         List<GroupData> after = app.group().list(); // Колличество групп после добавления. Список
         Assert.assertEquals(after.size(), before.size() - 1); // Проверка на колличество групп до и после добавления
 
