@@ -95,6 +95,7 @@ public class ContactHelper extends HelperBase {
         initContact();
         fillContactForm(contactData,creation);
         sobmitContactCreation();
+        contactCache = null;
     }
     public void modify(int index, ContactData contactData) {
         initModifications(index);
@@ -105,6 +106,7 @@ public class ContactHelper extends HelperBase {
         initModificationsById(contactData.getId());
         fillContactForm(contactData, false);
         submitContactModification();
+        contactCache = null;
     }
 
 
@@ -117,6 +119,7 @@ public class ContactHelper extends HelperBase {
         selectById(delContact.getId());
         acceptNextAlert = true;
         delete();
+        contactCache = null;
     }
 
     public boolean isTheAreContact() {
@@ -127,6 +130,8 @@ public class ContactHelper extends HelperBase {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
+    private Contacts contactCache = null;
 
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
@@ -143,6 +148,9 @@ return contacts;
 
     }
     public Contacts all() {
+        if (contactCache != null){
+            return new Contacts(contactCache);
+        }
         Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
