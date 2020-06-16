@@ -63,6 +63,7 @@ public class GroupHelper extends HelperBase {
         fillGroupForm(groupData);
         submitGroupModification();
         groupCache = null;
+        returnToGroupPage();
     }
 
     public void delete(int index) {
@@ -73,6 +74,7 @@ public class GroupHelper extends HelperBase {
         selectGroupById(group.getId());
         selectDeleteGroup();
         groupCache = null;
+        returnToGroupPage();
     }
 
     public void returnToGroupPage() {
