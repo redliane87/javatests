@@ -18,7 +18,7 @@ public class NewGroupCreationTest extends TestBase {
         GroupData group = new GroupData().withName("test003");
         app.group().create(group);
         Groups after = app.group().all(); // Колличество групп после добавления. Список
-        assertThat(after.size(), equalTo(before.size() + 1)); // Проверка на колличество групп до и после добавления
+        assertThat(app.group().getGroupCount(), equalTo(before.size() + 1)); // Проверка на колличество групп до и после добавления
 
 
         assertThat(after, equalTo(

@@ -21,7 +21,7 @@ public class NewContactCreationTest extends TestBase {
         app.contact().create(contactData, true);
         app.goTo().homePage();
         Contacts after = app.contact().all(); // Колличество контактов после добавления
-        assertThat(after.size(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
+        assertThat(app.contact().getContactCount(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
 
         assertThat(after, equalTo(before.
                 withAdded(contactData.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
