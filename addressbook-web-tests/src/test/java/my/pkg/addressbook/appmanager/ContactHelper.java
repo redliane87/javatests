@@ -145,20 +145,7 @@ public class ContactHelper extends HelperBase {
 
     private Contacts contactCache = null;
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element : elements) {
-            String fName = element.findElement(By.xpath(".//td[3]")).getText();
-            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
-            String address = element.findElement(By.xpath(".//td[4]")).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFName(fName).withLastName(lastName).withAddress(address));
-        }
 
-return contacts;
-
-    }
     public Contacts all() {
         if (contactCache != null){
             return new Contacts(contactCache);
@@ -170,6 +157,7 @@ return contacts;
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
             String address = element.findElement(By.xpath(".//td[4]")).getText();
             String allphones = element.findElement(By.xpath(".//td[6]")).getText();
+            String[] emails = element.findElement(By.xpath(".//td[5]")).getText().split("\n");
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData().withId(id).withFName(fName).withLastName(lastName).withAddress(address)
                     .withAllphones(allphones));
