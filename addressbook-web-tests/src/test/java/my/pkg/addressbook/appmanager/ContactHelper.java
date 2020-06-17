@@ -2,7 +2,7 @@ package my.pkg.addressbook.appmanager;
 
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
-import my.pkg.addressbook.model.Groups;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import static org.testng.Assert.assertTrue;
 
@@ -49,8 +48,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"),contactData.getAddress());
         type(By.name("nickname"), contactData.getNickName());
-        type(By.name("mobile"), contactData.getMobPhone());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("mobile"), contactData.getMobPhone());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("work"), contactData.getWorkPhone());
         if(creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
@@ -76,6 +77,17 @@ public class ContactHelper extends HelperBase {
     public void selectById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
+    }
+    public ContactData infoFormEditForm(ContactData contactData){
+        initModificationsById(contactData.getId());
+        String fname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contactData.getId()).withFName(fname).withLastName(lastname).
+            withHomePhone(home).withMobPhone(mobile).withWorkPhone(work);
     }
 
     public void initModifications(int index) {
@@ -157,8 +169,10 @@ return contacts;
             String fName = element.findElement(By.xpath(".//td[3]")).getText();
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
             String address = element.findElement(By.xpath(".//td[4]")).getText();
+            String allphones = element.findElement(By.xpath(".//td[5]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFName(fName).withLastName(lastName).withAddress(address));
+            contacts.add(new ContactData().withId(id).withFName(fName).withLastName(lastName).withAddress(address)
+                    .withAllphones(allphones));
         }
 
         return contacts;
