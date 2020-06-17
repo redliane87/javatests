@@ -1,9 +1,6 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
-import my.pkg.addressbook.model.Contacts;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -24,7 +21,7 @@ public class ContactPhoneTest extends TestBase {
     }
 
     @Test
-    public void testContactPhone(){
+    public void testContactPhone() {
         app.goTo().homePage();
         ContactData contactData = app.contact().all().iterator().next();
         ContactData contactInfoFormEditForm = app.contact().infoFormEditForm(contactData);
@@ -33,13 +30,13 @@ public class ContactPhoneTest extends TestBase {
     }
 
     private String mergePhones(ContactData contactData) {
-       return Arrays.asList(contactData.getHomePhone(), contactData.getMobPhone(), contactData.getWorkPhone())
-                .stream().filter((s) -> ! s.equals(""))
-               .map(ContactPhoneTest::cleaned)
-               .collect(Collectors.joining("\n"));
+        return Arrays.asList(contactData.getHomePhone(), contactData.getMobPhone(), contactData.getWorkPhone())
+                .stream().filter((s) -> !s.equals(""))
+                .map(ContactPhoneTest::cleaned)
+                .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned (String phone){
-        return phone.replaceAll("\\s","").replaceAll("[-()]","");
-}
+    public static String cleaned(String phone) {
+        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    }
 }

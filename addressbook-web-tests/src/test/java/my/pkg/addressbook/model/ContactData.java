@@ -78,9 +78,7 @@ public class ContactData {
         this.allphones = allphones;
         return this;
     }
-    public String getAllphones() {
-        return allphones;
-    }
+
 
     public String getfName() {
         return fName;
@@ -112,6 +110,10 @@ public class ContactData {
 
     public String getWorkPhone() {
         return workPhone;
+    }
+
+    public String getAllphones() {
+        return allphones;
     }
 
     public String getEmail() {
