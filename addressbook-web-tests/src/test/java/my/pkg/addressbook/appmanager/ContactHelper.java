@@ -3,6 +3,7 @@ package my.pkg.addressbook.appmanager;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
 
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +40,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void sobmitContactCreation() {
-        click(By.xpath("//input[21]"));
+        click(By.name("submit"));
     }
 
     public void fillContactForm(ContactData contactData, boolean creation) {
@@ -107,12 +108,13 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[22]"));
     }
 
-    public void create(ContactData contactData, boolean creation) {
+    public void create(ContactData contactData) {
         initContact();
-        fillContactForm(contactData,creation);
+        fillContactForm(contactData, true);
         sobmitContactCreation();
         contactCache = null;
     }
+
     public void modify(int index, ContactData contactData) {
         initModifications(index);
         fillContactForm(contactData, false);

@@ -16,8 +16,9 @@ public class ContactEmailTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.contact().all().size() == 0) {
-            app.contact().create(new ContactData().withFName("test1").withLastName("test4").withMidName("test3")
-                    .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup(null), true);
+            ContactData contactData = new ContactData().withFName("test1").withLastName("test4").withMidName("test3")
+                    .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup(null);
+            app.contact().create(contactData);
             app.goTo().homePage();
         }
     }

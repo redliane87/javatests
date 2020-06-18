@@ -18,7 +18,7 @@ public class NewContactCreationTest extends TestBase {
         ContactData contactData
                 = new ContactData().withFName("test668").withLastName("test4").withMidName("test3")
                 .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup("test001");
-        app.contact().create(contactData, true);
+        app.contact().create(contactData);
         app.goTo().homePage();
         Contacts after = app.contact().all(); // Колличество контактов после добавления
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
