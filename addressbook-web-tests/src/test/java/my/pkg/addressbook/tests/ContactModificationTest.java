@@ -14,7 +14,7 @@ public class ContactModificationTest extends TestBase {
     public void ensurePreconditions() {
         if (app.contact().all().size() == 0) {
             ContactData contactData = new ContactData().withFName("test3").withLastName("test4").withMidName("test3")
-                    .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup(null);
+                    .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup("test003");
             app.contact().create(contactData);
             app.goTo().homePage();
         }
@@ -25,7 +25,7 @@ public class ContactModificationTest extends TestBase {
         Contacts before = app.contact().all(); // колличество контактов до добавления
         ContactData modifiedContact = before.iterator().next();
         ContactData contactData = new ContactData().withId(modifiedContact.getId()).withFName("test105").withLastName("test555").withMidName("test3")
-                .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup(null);
+                .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").withGroup("test001");
         app.contact().modify(contactData);
         app.goTo().homePage();
         Contacts after = app.contact().all(); // Колличество контактов после добавления
