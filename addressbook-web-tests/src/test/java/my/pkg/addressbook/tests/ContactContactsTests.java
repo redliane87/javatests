@@ -1,6 +1,8 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,7 +12,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTest extends TestBase {
+public class ContactContactsTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.contact().all().size() == 0) {
@@ -33,11 +35,35 @@ public class ContactPhoneTest extends TestBase {
     private String mergePhones(ContactData contactData) {
         return Arrays.asList(contactData.getHomePhone(), contactData.getMobPhone(), contactData.getWorkPhone())
                 .stream().filter((s) -> !s.equals(""))
-                .map(ContactPhoneTest::cleaned)
+                .map(ContactContactsTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
     public static String cleaned(String phone) {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    }
+
+    @Test
+    public void testContactEmail() {
+        app.goTo().homePage();
+        ContactData contactData = app.contact().all().iterator().next();
+        ContactData contactInfoFormEditForm = app.contact().infoFormEditForm(contactData);
+
+        assertThat(contactData.getAllemails(), equalTo(mergeEmails(contactInfoFormEditForm)));
+
+    }
+
+    private String mergeEmails(ContactData contactData) {
+        return Arrays.asList(contactData.getEmail(), contactData.getEmail2(), contactData.getEmail3())
+                .stream().filter((s) -> !s.equals(""))
+                .collect(Collectors.joining("\n"));
+    }
+    @Test
+    public void testContactAddress() {
+        app.goTo().homePage();
+        ContactData contactData = app.contact().all().iterator().next();
+        ContactData contactInfoFormEditForm = app.contact().infoFormEditForm(contactData);
+
+        MatcherAssert.assertThat(contactData.getAddress(), CoreMatchers.equalTo(contactInfoFormEditForm.getAddress()));
     }
 }
