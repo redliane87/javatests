@@ -182,7 +182,8 @@ public class ContactData {
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", allphones='" + allphones + '\'' +
-                ", email='" + email + '\'' +
+                ", allemails='" + allemails + '\'' +
+                ", group='" + group + '\'' +
                 '}';
     }
 
