@@ -1,0 +1,227 @@
+<list>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 0</fName>
+    <midName>midName 0</midName>
+    <lastName>lastName 0</lastName>
+    <nickName>nickName 0</nickName>
+    <address>address 0</address>
+    <mobPhone>mobPhone 0</mobPhone>
+    <homePhone>homePhone 0</homePhone>
+    <workPhone>workPhone 0</workPhone>
+    <email>red@mail.ru 0</email>
+    <email2>red2@mail.ru 0</email2>
+    <email3>red3@mail.ru 0</email3>
+    <group>test001 0</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 1</fName>
+    <midName>midName 1</midName>
+    <lastName>lastName 1</lastName>
+    <nickName>nickName 1</nickName>
+    <address>address 1</address>
+    <mobPhone>mobPhone 1</mobPhone>
+    <homePhone>homePhone 1</homePhone>
+    <workPhone>workPhone 1</workPhone>
+    <email>red@mail.ru 1</email>
+    <email2>red2@mail.ru 1</email2>
+    <email3>red3@mail.ru 1</email3>
+    <group>test001 1</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 2</fName>
+    <midName>midName 2</midName>
+    <lastName>lastName 2</lastName>
+    <nickName>nickName 2</nickName>
+    <address>address 2</address>
+    <mobPhone>mobPhone 2</mobPhone>
+    <homePhone>homePhone 2</homePhone>
+    <workPhone>workPhone 2</workPhone>
+    <email>red@mail.ru 2</email>
+    <email2>red2@mail.ru 2</email2>
+    <email3>red3@mail.ru 2</email3>
+    <group>test001 2</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 3</fName>
+    <midName>midName 3</midName>
+    <lastName>lastName 3</lastName>
+    <nickName>nickName 3</nickName>
+    <address>address 3</address>
+    <mobPhone>mobPhone 3</mobPhone>
+    <homePhone>homePhone 3</homePhone>
+    <workPhone>workPhone 3</workPhone>
+    <email>red@mail.ru 3</email>
+    <email2>red2@mail.ru 3</email2>
+    <email3>red3@mail.ru 3</email3>
+    <group>test001 3</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 4</fName>
+    <midName>midName 4</midName>
+    <lastName>lastName 4</lastName>
+    <nickName>nickName 4</nickName>
+    <address>address 4</address>
+    <mobPhone>mobPhone 4</mobPhone>
+    <homePhone>homePhone 4</homePhone>
+    <workPhone>workPhone 4</workPhone>
+    <email>red@mail.ru 4</email>
+    <email2>red2@mail.ru 4</email2>
+    <email3>red3@mail.ru 4</email3>
+    <group>test001 4</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 5</fName>
+    <midName>midName 5</midName>
+    <lastName>lastName 5</lastName>
+    <nickName>nickName 5</nickName>
+    <address>address 5</address>
+    <mobPhone>mobPhone 5</mobPhone>
+    <homePhone>homePhone 5</homePhone>
+    <workPhone>workPhone 5</workPhone>
+    <email>red@mail.ru 5</email>
+    <email2>red2@mail.ru 5</email2>
+    <email3>red3@mail.ru 5</email3>
+    <group>test001 5</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 6</fName>
+    <midName>midName 6</midName>
+    <lastName>lastName 6</lastName>
+    <nickName>nickName 6</nickName>
+    <address>address 6</address>
+    <mobPhone>mobPhone 6</mobPhone>
+    <homePhone>homePhone 6</homePhone>
+    <workPhone>workPhone 6</workPhone>
+    <email>red@mail.ru 6</email>
+    <email2>red2@mail.ru 6</email2>
+    <email3>red3@mail.ru 6</email3>
+    <group>test001 6</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 7</fName>
+    <midName>midName 7</midName>
+    <lastName>lastName 7</lastName>
+    <nickName>nickName 7</nickName>
+    <address>address 7</address>
+    <mobPhone>mobPhone 7</mobPhone>
+    <homePhone>homePhone 7</homePhone>
+    <workPhone>workPhone 7</workPhone>
+    <email>red@mail.ru 7</email>
+    <email2>red2@mail.ru 7</email2>
+    <email3>red3@mail.ru 7</email3>
+    <group>test001 7</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 8</fName>
+    <midName>midName 8</midName>
+    <lastName>lastName 8</lastName>
+    <nickName>nickName 8</nickName>
+    <address>address 8</address>
+    <mobPhone>mobPhone 8</mobPhone>
+    <homePhone>homePhone 8</homePhone>
+    <workPhone>workPhone 8</workPhone>
+    <email>red@mail.ru 8</email>
+    <email2>red2@mail.ru 8</email2>
+    <email3>red3@mail.ru 8</email3>
+    <group>test001 8</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 9</fName>
+    <midName>midName 9</midName>
+    <lastName>lastName 9</lastName>
+    <nickName>nickName 9</nickName>
+    <address>address 9</address>
+    <mobPhone>mobPhone 9</mobPhone>
+    <homePhone>homePhone 9</homePhone>
+    <workPhone>workPhone 9</workPhone>
+    <email>red@mail.ru 9</email>
+    <email2>red2@mail.ru 9</email2>
+    <email3>red3@mail.ru 9</email3>
+    <group>test001 9</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 10</fName>
+    <midName>midName 10</midName>
+    <lastName>lastName 10</lastName>
+    <nickName>nickName 10</nickName>
+    <address>address 10</address>
+    <mobPhone>mobPhone 10</mobPhone>
+    <homePhone>homePhone 10</homePhone>
+    <workPhone>workPhone 10</workPhone>
+    <email>red@mail.ru 10</email>
+    <email2>red2@mail.ru 10</email2>
+    <email3>red3@mail.ru 10</email3>
+    <group>test001 10</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 11</fName>
+    <midName>midName 11</midName>
+    <lastName>lastName 11</lastName>
+    <nickName>nickName 11</nickName>
+    <address>address 11</address>
+    <mobPhone>mobPhone 11</mobPhone>
+    <homePhone>homePhone 11</homePhone>
+    <workPhone>workPhone 11</workPhone>
+    <email>red@mail.ru 11</email>
+    <email2>red2@mail.ru 11</email2>
+    <email3>red3@mail.ru 11</email3>
+    <group>test001 11</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 12</fName>
+    <midName>midName 12</midName>
+    <lastName>lastName 12</lastName>
+    <nickName>nickName 12</nickName>
+    <address>address 12</address>
+    <mobPhone>mobPhone 12</mobPhone>
+    <homePhone>homePhone 12</homePhone>
+    <workPhone>workPhone 12</workPhone>
+    <email>red@mail.ru 12</email>
+    <email2>red2@mail.ru 12</email2>
+    <email3>red3@mail.ru 12</email3>
+    <group>test001 12</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 13</fName>
+    <midName>midName 13</midName>
+    <lastName>lastName 13</lastName>
+    <nickName>nickName 13</nickName>
+    <address>address 13</address>
+    <mobPhone>mobPhone 13</mobPhone>
+    <homePhone>homePhone 13</homePhone>
+    <workPhone>workPhone 13</workPhone>
+    <email>red@mail.ru 13</email>
+    <email2>red2@mail.ru 13</email2>
+    <email3>red3@mail.ru 13</email3>
+    <group>test001 13</group>
+  </my.pkg.addressbook.model.ContactData>
+  <my.pkg.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <fName>test 14</fName>
+    <midName>midName 14</midName>
+    <lastName>lastName 14</lastName>
+    <nickName>nickName 14</nickName>
+    <address>address 14</address>
+    <mobPhone>mobPhone 14</mobPhone>
+    <homePhone>homePhone 14</homePhone>
+    <workPhone>workPhone 14</workPhone>
+    <email>red@mail.ru 14</email>
+    <email2>red2@mail.ru 14</email2>
+    <email3>red3@mail.ru 14</email3>
+    <group>test001 14</group>
+  </my.pkg.addressbook.model.ContactData>
+</list>
