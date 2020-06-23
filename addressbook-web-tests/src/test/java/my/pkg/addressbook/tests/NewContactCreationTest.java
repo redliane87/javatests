@@ -1,5 +1,7 @@
 package my.pkg.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.inject.internal.util.SourceProvider;
 import com.thoughtworks.xstream.XStream;
 import my.pkg.addressbook.model.ContactData;
@@ -25,7 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class NewContactCreationTest extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validContacts() throws IOException {
+    public Iterator<Object[]> validContactsXml() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         File photo = new File("src/test/resources/mol.jpg");
         BufferedReader reader = new BufferedReader(new FileReader(new File ("src/test/resources/contacts.xml")));
@@ -40,8 +42,21 @@ public class NewContactCreationTest extends TestBase {
         List<ContactData> contacts = (List<ContactData>) xStream.fromXML(xml);
         return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
+    @DataProvider
+    public Iterator<Object[]> validContactsJson() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File ("src/test/resources/contacts.json")));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null){
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {}.getType()); // List<ContactData>.class
+        return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
 
-    @Test (dataProvider = "validContacts")
+    @Test (dataProvider = "validContactsJson")
     public void testNewContactCreation(ContactData contactData) {
         app.goTo().homePage();
         Contacts before = app.contact().all(); // колличество контактов до добавления
