@@ -5,8 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 
