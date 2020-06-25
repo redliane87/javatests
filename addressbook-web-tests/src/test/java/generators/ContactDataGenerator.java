@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import my.pkg.addressbook.model.ContactData;
-import my.pkg.addressbook.model.GroupData;
+
 
 import java.io.File;
 import java.io.FileWriter;
