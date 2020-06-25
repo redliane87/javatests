@@ -8,5 +8,4 @@
             <class name="my.pkg.addressbook.tests.GroupDeleteTest" />
         </classes>
     </test>
-
 </suite>

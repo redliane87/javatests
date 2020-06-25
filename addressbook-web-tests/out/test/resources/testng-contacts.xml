@@ -7,7 +7,6 @@
             <class name="my.pkg.addressbook.tests.ContactModificationTest"/>
             <class name="my.pkg.addressbook.tests.ContactContactsTests"/>
             <class name="my.pkg.addressbook.tests.ContactDeleteTest"/>
-
         </classes>
     </test>
 </suite>
