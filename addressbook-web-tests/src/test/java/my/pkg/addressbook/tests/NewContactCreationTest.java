@@ -2,11 +2,11 @@ package my.pkg.addressbook.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.inject.internal.util.SourceProvider;
 import com.thoughtworks.xstream.XStream;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
-import my.pkg.addressbook.model.GroupData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 
@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class NewContactCreationTest extends TestBase {
+
 
     @DataProvider
     public Iterator<Object[]> validContactsXml() throws IOException {
@@ -61,6 +61,7 @@ public class NewContactCreationTest extends TestBase {
 
     @Test (dataProvider = "validContactsJson")
     public void testNewContactCreation(ContactData contactData) {
+
         app.goTo().homePage();
         Contacts before = app.contact().all(); // колличество контактов до добавления
         app.contact().create(contactData);
@@ -70,6 +71,7 @@ public class NewContactCreationTest extends TestBase {
 
         assertThat(after, equalTo(before.
                 withAdded(contactData.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+
     }
 
 }
