@@ -244,18 +244,24 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (fName != null ? !fName.equals(that.fName) : that.fName != null) return false;
+        if (midName != null ? !midName.equals(that.midName) : that.midName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-        return address != null ? address.equals(that.address) : that.address == null;
+        if (nickName != null ? !nickName.equals(that.nickName) : that.nickName != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
+        if (mobPhone != null ? !mobPhone.equals(that.mobPhone) : that.mobPhone != null) return false;
+        return email != null ? email.equals(that.email) : that.email == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (fName != null ? fName.hashCode() : 0);
+        result = 31 * result + (midName != null ? midName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (nickName != null ? nickName.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (mobPhone != null ? mobPhone.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
-
-
 }
