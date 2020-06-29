@@ -56,9 +56,9 @@ public class NewGroupCreationTest extends TestBase {
     @Test (dataProvider = "validGroupsFromJson")
     public void testNewGroupCreation(GroupData group) {
         app.goTo().groupPage();
-        Groups before = app.group().all(); // колличество групп до добавления. Список
+        Groups before = app.db().groups(); // колличество групп до добавления. Список
         app.group().create(group);
-        Groups after = app.group().all(); // Колличество групп после добавления. Список
+        Groups after = app.db().groups(); // Колличество групп после добавления. Список
         assertThat(app.group().getGroupCount(), equalTo(before.size() + 1)); // Проверка на колличество групп до и после добавления
 
         assertThat(after, equalTo(
