@@ -61,10 +61,10 @@ public class NewContactCreationTest extends TestBase {
     public void testNewContactCreation(ContactData contactData) {
 
         app.goTo().homePage();
-        Contacts before = app.contact().all(); // колличество контактов до добавления
+        Contacts before = app.db().contacts(); // колличество контактов до добавления
         app.contact().create(contactData);
         app.goTo().homePage();
-        Contacts after = app.contact().all(); // Колличество контактов после добавления
+        Contacts after = app.db().contacts(); // Колличество контактов после добавления
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
 
         assertThat(after, equalTo(before.
