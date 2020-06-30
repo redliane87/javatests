@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import javax.naming.Name;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +155,34 @@ public class ContactHelper extends HelperBase {
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+    public void addToGroup(ContactData contactData) {
+        selectById(contactData.getId());
+        wd.findElement(By.name("to_group")).click();
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+        wd.findElement(By.name("add")).click();
+    }
+    public void showAllGroups() {
+        wd.findElement(By.name("group")).click();
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+        wd.findElement(By.name("group")).click();
+
+    }
+    public void filterByGroup(ContactData contactData) {
+        new Select(wd.findElement(By.cssSelector("select[name='group']")))
+                .selectByVisibleText(contactData.getGroups().iterator().next().getName());
+    }
+
+    public void removedFromGroup(ContactData contactData) {
+        filterByGroup(contactData);
+        selectById(contactData.getId());
+        wd.findElement(By.name("remove")).click();
+        selectAllGroups();
+    }
+    private void selectAllGroups() {
+        wd.findElement(By.name("group")).click();
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+        wd.findElement(By.name("group")).click();
     }
 
     private Contacts contactCache = null;
