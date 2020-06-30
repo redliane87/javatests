@@ -66,9 +66,9 @@ public class NewContactCreationTest extends TestBase {
         app.goTo().homePage();
         Contacts after = app.db().contacts(); // Колличество контактов после добавления
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
-
         assertThat(after, equalTo(before.
                 withAdded(contactData.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+        verifyContactListInUI();
 
     }
 
