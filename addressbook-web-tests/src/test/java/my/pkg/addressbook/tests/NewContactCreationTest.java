@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
+import my.pkg.addressbook.model.GroupData;
 import my.pkg.addressbook.model.Groups;
 import org.testng.annotations.*;
 
@@ -60,10 +61,15 @@ public class NewContactCreationTest extends TestBase {
 
     @Test (dataProvider = "validContactsJson")
     public void testNewContactCreation(ContactData contactData) {
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("test001"));
+            app.goTo().homePage();
+        }
         Groups groups = app.db().groups();
         app.goTo().homePage();
         Contacts before = app.db().contacts(); // колличество контактов до добавления
-        app.contact().create(contactData);
+        app.contact().create(contactData.inGroup(groups.iterator().next()));
         app.goTo().homePage();
         Contacts after = app.db().contacts(); // Колличество контактов после добавления
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1)); // Проверка на колличество контактов до и после добавления
