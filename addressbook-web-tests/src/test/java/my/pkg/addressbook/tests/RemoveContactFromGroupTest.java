@@ -27,9 +27,10 @@ public class RemoveContactFromGroupTest extends TestBase{
         }
         Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
+        GroupData group = groups.iterator().next();
         for (ContactData contactData : contacts) {
             if (contactData.getGroups().size() != groups.size()) {
-                app.contact().addToGroup(contactData);
+                app.contact().addToGroup(contactData, group);
             }
         }
         app.goTo().homePage();

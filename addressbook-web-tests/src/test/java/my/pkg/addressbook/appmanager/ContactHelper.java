@@ -3,6 +3,7 @@ package my.pkg.addressbook.appmanager;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
 
+import my.pkg.addressbook.model.GroupData;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -13,6 +14,7 @@ import org.testng.Assert;
 
 import javax.naming.Name;
 import java.io.File;
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,9 +159,9 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public void addToGroup(ContactData contactData) {
+    public void addToGroup(ContactData contactData, GroupData group) {
         selectById(contactData.getId());
-        wd.findElement(By.name("to_group")).click();
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
        // new Select(wd.findElement(By.name("to_group"))).selectByValue(contactData.getGroups().iterator().next().getName());
         wd.findElement(By.name("add")).click();
     }

@@ -15,6 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class AddContactToGroupTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
+        Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
         if (app.db().contacts().size() == 0) {
             if (app.db().groups().size() == 0) {
@@ -28,9 +29,8 @@ public class AddContactToGroupTest extends TestBase {
                             .withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").inGroup(groups.iterator().next()));
             app.goTo().homePage();
         }
-        Contacts contacts = app.db().contacts();
-        for (ContactData account : contacts) {
-            if (account.getGroups().size() == groups.size()) {
+        for (ContactData contactData : contacts) {
+            if (contactData.getGroups().size() == groups.size()) {
                 app.contact().create(new ContactData()
                         .withFName("test3").withLastName("test4").withMidName("test3").withNickName("123")
                         .withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress").inGroup(groups.iterator().next()));
@@ -44,10 +44,11 @@ public class AddContactToGroupTest extends TestBase {
     public void testAddContactToGroup () {
         Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
+        GroupData group = groups.iterator().next();
         for (ContactData contactData : contacts) {
             if (contactData.getGroups().size() != groups.size()) {
                 Groups groupsBefore = contactData.getGroups();
-                app.contact().addToGroup(contactData);
+                app.contact().addToGroup(contactData, group);
                 Contacts updateContacts = app.db().contacts();
                 for (ContactData updateContact : updateContacts) {
                     if (updateContact.getId() == contactData.getId()) {
