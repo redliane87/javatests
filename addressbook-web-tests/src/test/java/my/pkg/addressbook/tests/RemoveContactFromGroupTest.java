@@ -14,21 +14,22 @@ public class RemoveContactFromGroupTest extends TestBase{
 
     @BeforeMethod
     public void ensurePreconditions() {
+
         if (app.db().contacts().size() == 0) {
             if (app.db().groups().size() == 0) {
                 app.goTo().groupPage();
-                app.group().create(new GroupData().withName("Запасной вариант")
-                        .withHeader("Запасная голова").withFooter("Запасные ноги"));
+                app.group().create(new GroupData().withName("test001")
+                        .withHeader("test002").withFooter("test003"));
                 app.goTo().homePage();
             }
             app.contact().create(new ContactData().withFName("test3").withLastName("test4").withMidName("test3").withNickName("123")
                     .withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress"));
         }
-        Contacts accounts = app.db().contacts();
+        Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
-        for (ContactData account : accounts) {
-            if (account.getGroups().size() != groups.size()) {
-                app.contact().addToGroup(account);
+        for (ContactData contactData : contacts) {
+            if (contactData.getGroups().size() != groups.size()) {
+                app.contact().addToGroup(contactData);
             }
         }
         app.goTo().homePage();
