@@ -156,10 +156,11 @@ public class ContactHelper extends HelperBase {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
     public void addToGroup(ContactData contactData) {
         selectById(contactData.getId());
         wd.findElement(By.name("to_group")).click();
-        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+       // new Select(wd.findElement(By.name("to_group"))).selectByValue(contactData.getGroups().iterator().next().getName());
         wd.findElement(By.name("add")).click();
     }
     public void showAllGroups() {
@@ -177,13 +178,13 @@ public class ContactHelper extends HelperBase {
         filterByGroup(contactData);
         selectById(contactData.getId());
         wd.findElement(By.name("remove")).click();
-        selectAllGroups();
+
     }
-    private void selectAllGroups() {
+   /* private void selectAllGroups() {
         wd.findElement(By.name("group")).click();
         new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
         wd.findElement(By.name("group")).click();
-    }
+    }*/
 
     private Contacts contactCache = null;
 
