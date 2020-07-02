@@ -1,19 +1,56 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
-import my.pkg.addressbook.model.Contacts;
+
 import my.pkg.addressbook.model.GroupData;
 import my.pkg.addressbook.model.Groups;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import java.util.stream.Collectors;
+
+
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 
 public class AddContactToGroupTest extends TestBase {
     @BeforeMethod
+public void ensurePreconditions() {
+        /**.Берем все контакты -> фильтруем их на наличие группы (оставляя только те, у которых нет групп) ->
+         * в отфильтрованной коллекции берем итератором свободный от группы контакт и добавляем его группу
+         * обновляем данные по нашему контакту**/
+
+    if (app.db().contacts().stream().filter(e -> (e.getGroups().isEmpty())).collect(Collectors.toSet()).size() == 0) {
+        app.contact().create(new ContactData()
+                .withFName("test3").withLastName("test4").withMidName("test3").withNickName("123")
+                .withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress"));
+    }
+
+    if (app.db().groups().size() == 0) {
+        app.goTo().groupPage();
+        app.group().create(new GroupData().withName("test").withHeader("test1").withFooter("test2"));
+    }
+}
+    @Test
+    public void testAddContactToGroup (){
+        app.goTo().homePage();
+        Groups groups = app.db().groups();
+        GroupData group = groups.iterator().next();
+        ContactData contact = app.db().contacts().
+                stream().filter(e -> (e.getGroups().isEmpty())).collect(Collectors.toSet()).
+                iterator().next();
+        app.contact().addToGroup(contact, group);
+        int contactId = contact.getId();
+        contact = app.db().contacts().
+                stream().filter(e -> (e.getId() == contactId)).collect(Collectors.toSet()).
+                iterator().next();
+
+        assertThat(contact.getGroups(), contains(group));}}
+
+
+   /* Зашел в тупик с подходом, вернуться в свободное время (проанализировать проверку контакта на наличие группы, если группа есть создать новый контакт)
+   @BeforeMethod
     public void ensurePreconditions() {
         Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
@@ -63,15 +100,6 @@ public class AddContactToGroupTest extends TestBase {
                 app.contact().showAllGroups();
             }
         }
-        /*
-        @Test
-        public void testAddContactToGroup () {
-            Contacts before = app.db().contacts(); // колличество контактов до добавления
-            ContactData findAccount = before.iterator().next();
-            ContactData contactData = new ContactData().withFName("test3").withLastName("test4").withMidName("test3")
-                    .withNickName("123").withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress");
-            app.contact().addToGroup(findAccount);
-            app.goTo().homePage();
-        } */
-    }
-}
+
+    }*/
+
