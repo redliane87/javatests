@@ -37,18 +37,20 @@ public class RemoveContactFromGroupTest extends TestBase{
     }
     @Test
     public void testRemoveContactFromGroup () {
-        Contacts accounts = app.db().contacts();
-        for (ContactData account : accounts) {
-            if (account.getGroups().size() != 0) {
-                Groups groupsBefore = account.getGroups();
-                app.contact().removedFromGroup(account);
+        Contacts contacts = app.db().contacts();
+        Groups groups = app.db().groups();
+        GroupData group = groups.iterator().next();
+        for (ContactData contactData : contacts) {
+            if (contactData.getGroups().size() != 0) {
+                Groups groupsBefore = contactData.getGroups();
+                app.contact().removedFromGroup(contactData, group);
                 Contacts updatedAccounts = app.db().contacts();
                 for (ContactData updatedAccount : updatedAccounts) {
-                    if (updatedAccount.getId() == account.getId()) {
+                    if (updatedAccount.getId() == contactData.getId()) {
                         Groups groupsAfter = updatedAccount.getGroups();
                         assertThat(groupsAfter.size(), equalTo(groupsBefore.size() - 1));
                         groupsBefore.removeAll(groupsAfter);
-                        assertThat(groupsAfter, equalTo(account.getGroups().without(groupsBefore.iterator().next())));
+                        assertThat(groupsAfter, equalTo(contactData.getGroups().without(groupsBefore.iterator().next())));
                     }
                 }
                 app.goTo().homePage();

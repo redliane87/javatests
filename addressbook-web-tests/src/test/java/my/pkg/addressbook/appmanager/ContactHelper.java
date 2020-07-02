@@ -171,13 +171,14 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.name("group")).click();
 
     }
-    public void filterByGroup(ContactData contactData) {
-        new Select(wd.findElement(By.cssSelector("select[name='group']")))
-                .selectByVisibleText(contactData.getGroups().iterator().next().getName());
+    public void filterByGroup(ContactData contactData,  GroupData group) {
+        new Select(wd.findElement(By.cssSelector("select[name=group]"))).selectByVisibleText(group.getName());
+       // new Select(wd.findElement(By.cssSelector("select[name='group']")))
+               // .selectByVisibleText(contactData.getGroups().iterator().next().getName());
     }
 
-    public void removedFromGroup(ContactData contactData) {
-        filterByGroup(contactData);
+    public void removedFromGroup(ContactData contactData, GroupData group) {
+        filterByGroup(contactData,group);
         selectById(contactData.getId());
         wd.findElement(By.name("remove")).click();
 
