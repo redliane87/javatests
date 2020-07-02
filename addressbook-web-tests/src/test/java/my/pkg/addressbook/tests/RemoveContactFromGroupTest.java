@@ -1,20 +1,63 @@
 package my.pkg.addressbook.tests;
 
 import my.pkg.addressbook.model.ContactData;
-import my.pkg.addressbook.model.Contacts;
 import my.pkg.addressbook.model.GroupData;
-import my.pkg.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.not;
 
-public class RemoveContactFromGroupTest extends TestBase{
-
+public class RemoveContactFromGroupTest extends TestBase {
+    /**
+     * .Берем все контакты -> фильтруем их на наличие группы (оставляя только те, у которых нет групп) ->
+     * в отфильтрованной коллекции берем итератором свободный от группы контакт и добавляем его группу
+     * обновляем данные по нашему контакту
+     **/
     @BeforeMethod
     public void ensurePreconditions() {
+        if (app.db().contacts().size() == 0) {
+            app.contact().create(new ContactData().withFName("test3").withLastName("test4").withMidName("test3").withNickName("123")
+                    .withMobPhone("8880978").withEmail("redliane@mail.ru").withAddress("testAddress"));
+            app.goTo().homePage();
+        }
 
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("test").withHeader("test1").withFooter("test2"));
+            app.goTo().homePage();
+        }
+
+        if (app.db().groups().stream().filter(g -> !g.getContacts().isEmpty()).collect(toSet()).isEmpty()) {
+            GroupData groupTemp = app.db().groups().iterator().next();
+            ContactData contactTemp = app.db().contacts().iterator().next();
+            app.contact().addToGroup(contactTemp, groupTemp);
+        }
+    }
+
+    @Test
+    public void testContactFromGroup() {
+        app.goTo().homePage();
+        GroupData group = app.db().groups().
+                stream().filter(g -> !g.getContacts().isEmpty()).collect(toSet()).
+                iterator().next();
+        ContactData contact = app.db().contacts().
+                stream().filter(c -> c.getGroups().contains(group)).collect(toSet()).
+                iterator().next();
+        app.contact().removedFromGroup(contact, group);
+
+        int contactId = contact.getId();
+        contact = app.db().contacts().
+                stream().filter(e -> (e.getId() == contactId)).collect(Collectors.toSet()).
+                iterator().next();
+        assertThat(contact.getGroups(), not(contains(group)));
+    }
+}
+/* Зашел в тупик с подходом, вернуться в свободное время (тест валится когда в Контактах несколько контактов с группами а так же нет не одного контакта))
         if (app.db().contacts().size() == 0) {
             if (app.db().groups().size() == 0) {
                 app.goTo().groupPage();
@@ -59,4 +102,4 @@ public class RemoveContactFromGroupTest extends TestBase{
         }
 
     }
-}
+*/
