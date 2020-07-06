@@ -1,4 +1,4 @@
-package my.pkg.addressbook.tests;
+package my.pkg.addressbook;
 
 import my.pkg.addressbook.appmanager.ApplicationManager;
 import my.pkg.addressbook.model.ContactData;

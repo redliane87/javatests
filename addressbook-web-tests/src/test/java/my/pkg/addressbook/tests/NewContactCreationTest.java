@@ -3,6 +3,7 @@ package my.pkg.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import my.pkg.addressbook.TestBase;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
 import my.pkg.addressbook.model.GroupData;

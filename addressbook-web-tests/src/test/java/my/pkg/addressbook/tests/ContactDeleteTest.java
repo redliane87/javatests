@@ -1,6 +1,7 @@
 package my.pkg.addressbook.tests;
 
 
+import my.pkg.addressbook.TestBase;
 import my.pkg.addressbook.model.ContactData;
 import my.pkg.addressbook.model.Contacts;
 import my.pkg.addressbook.model.Groups;

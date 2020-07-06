@@ -1,5 +1,6 @@
 package my.pkg.addressbook.tests;
 
+import my.pkg.addressbook.TestBase;
 import my.pkg.addressbook.model.GroupData;
 import my.pkg.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
