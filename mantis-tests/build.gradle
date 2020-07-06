@@ -7,9 +7,17 @@ repositories {
 }
 dependencies {
     implementation 'org.testng:testng:7.1.0'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-5'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
 
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
 }
 test {
     useTestNG {

@@ -42,21 +42,18 @@ public class ApplicationManager {
 
     }
 
-
     public void stop() {
-        gotoHomePage();
-        logout();
         wd.quit();
     }
 
-    public void logout() {
-        wd.findElement(By.linkText("Logout")).click();
+    public HttpSession newSession() {
+        return new HttpSession(this);
     }
 
-    public void gotoHomePage() {
-        wd.findElement(By.linkText("home")).click();
-    }
 
+    public Object getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }
 
 
