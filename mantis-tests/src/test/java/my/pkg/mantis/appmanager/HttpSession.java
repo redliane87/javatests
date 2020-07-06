@@ -30,18 +30,18 @@ public class HttpSession {
         params.add(new BasicNameValuePair("username", username));
         params.add(new BasicNameValuePair("password", password));
         params.add(new BasicNameValuePair("secure_session", "on"));
-        params.add(new BasicNameValuePair("return", "index.php"));
+        params.add(new BasicNameValuePair("return", "index.php&username=administrator&password=root" ));
         post.setEntity(new UrlEncodedFormEntity(params));
         CloseableHttpResponse response = httpClient.execute(post);
         String body = getTextFrom(response);
-        return body.contains(String.format("<span class=label hidden-xs label-default arrowed>%s</span>", username));
+        return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
     }
 
     public boolean isLoggedInAs(String username) throws IOException {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
         CloseableHttpResponse response = httpClient.execute(get);
         String body = getTextFrom(response);
-        return body.contains(String.format("<span class=label hidden-xs label-default arrowed>%s</span>", username));
+        return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
     }
 
     private String getTextFrom(CloseableHttpResponse response) throws IOException {
