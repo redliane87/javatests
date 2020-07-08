@@ -14,6 +14,6 @@ public class UserHelper extends HelperBase {
     }
 
     public void initPasswordReset() {
-        click(By.xpath("//form[@id='manage-user-reset-form']/fieldset/span/input"));
+        click(By.xpath(" //input[@value='Reset Password']"));
     }
 }

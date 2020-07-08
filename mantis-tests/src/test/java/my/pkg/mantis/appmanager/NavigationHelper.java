@@ -8,12 +8,12 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void usersManageTab() {
-        click(By.cssSelector("a[href='/mantis-1.2.20/manage_user_page.php']"));
+        click(By.cssSelector("a[href$=\"manage_user_page.php\"]"));
 
     }
 
     public void managePage() {
-        click(By.cssSelector("a[href='/mantis-1.2.20/manage_overview_page.php']"));
+        click(By.cssSelector("a[href$=\"manage_overview_page.php\"]"));
 
     }
 }
