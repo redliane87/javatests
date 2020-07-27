@@ -24,6 +24,9 @@ public class HelperBase {
             return false;
         }
     }
+    public void alertConfirmation() {
+        wd.switchTo().alert().accept();
+    }
 
     protected void click(By locator) {
         wd.findElement(locator).click();

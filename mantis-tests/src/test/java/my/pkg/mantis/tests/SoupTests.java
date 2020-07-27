@@ -1,14 +1,17 @@
 package my.pkg.mantis.tests;
 
+import my.pkg.mantis.model.Issue;
+import my.pkg.mantis.model.Project;
 import org.testng.annotations.Test;
 
 
 import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.util.Set;
 
 
-import static org.testng.Assert.assertEquals
+import static org.testng.Assert.assertEquals;
 
 public class SoupTests extends TestBase{
     @Test
@@ -41,4 +44,4 @@ public class SoupTests extends TestBase{
     }
 
 }
-}
+
