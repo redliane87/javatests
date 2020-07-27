@@ -28,7 +28,9 @@ public class TestBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
+
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws IOException {
