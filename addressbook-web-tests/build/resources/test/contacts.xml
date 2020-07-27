@@ -1,0 +1,44 @@
+<list>
+  <contact>
+    <fName>test 0</fName>
+    <midName>midName 0</midName>
+    <lastName>lastName 0</lastName>
+    <nickName>nickName 0</nickName>
+    <address>address 0</address>
+    <mobPhone>mobPhone 0</mobPhone>
+    <homePhone>homePhone 0</homePhone>
+    <workPhone>workPhone 0</workPhone>
+    <email>red@mail.ru 0</email>
+    <email2>red2@mail.ru 0</email2>
+    <email3>red3@mail.ru 0</email3>
+    <group>test001 0</group>
+  </contact>
+  <contact>
+    <fName>test 1</fName>
+    <midName>midName 1</midName>
+    <lastName>lastName 1</lastName>
+    <nickName>nickName 1</nickName>
+    <address>address 1</address>
+    <mobPhone>mobPhone 1</mobPhone>
+    <homePhone>homePhone 1</homePhone>
+    <workPhone>workPhone 1</workPhone>
+    <email>red@mail.ru 1</email>
+    <email2>red2@mail.ru 1</email2>
+    <email3>red3@mail.ru 1</email3>
+    <group>test001 1</group>
+  </contact>
+  <contact>
+    <fName>test 2</fName>
+    <midName>midName 2</midName>
+    <lastName>lastName 2</lastName>
+    <nickName>nickName 2</nickName>
+    <address>address 2</address>
+    <mobPhone>mobPhone 2</mobPhone>
+    <homePhone>homePhone 2</homePhone>
+    <workPhone>workPhone 2</workPhone>
+    <email>red@mail.ru 2</email>
+    <email2>red2@mail.ru 2</email2>
+    <email3>red3@mail.ru 2</email3>
+    <group>test001 2</group>
+  </contact>
+</list>
